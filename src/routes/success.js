@@ -65,7 +65,7 @@ function Success() {
             )
         })
     }
-    console.log(scannerData);
+
     return (
         <main>
             <img class="back-button app-icon" src={backbutton} alt="Back Button" onClick={() => navigate(-1)} />

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import backbutton from '../images/chevron-left-solid.svg';
 import '../stylesheets/App.css';
@@ -17,7 +17,6 @@ function Error() {
                 <AlertTitle>Error - {errorCode}</AlertTitle>
                 <strong>{errorMessage}</strong>
             </Alert>
-
         </main>
     );
 }

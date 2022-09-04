@@ -1,3 +1,4 @@
+/* Main Page */
 .app{
   background-color: #05406d;
   background-image:radial-gradient(circle at bottom left, #05406d, #010108 60%), linear-gradient(313deg, #05406d 0%, #010108 70%);
@@ -37,17 +38,11 @@
   width: 600px;
 }
 
-.form-card-shadow{
-  box-shadow: inset 0px 0px 10px white;;
-  background-color: transparent;
-  width: 100%;
-  height: 100%;
-}
-
 .alert{
   position: absolute;
-  /* top: 0; */
 }
+
+/* Sub Page */
 
 .back-button{
   width: 20px;
