@@ -1,0 +1,71 @@
+.input-field{
+    color: white;
+    border-radius: 10%;
+    width:100%;
+    padding: 4px 0px;
+}
+
+.input-text-box{
+    border-radius: 10px;
+    border: none;
+    width: 100%;
+    padding: 3px 15px;
+}
+
+.input-text-box.inline{
+    width: 70%;
+}
+
+.input-label{
+    color: white;
+    display: block;
+    padding-bottom: 5px;
+}
+
+.input-label.inline{
+    display: inline-block;
+    padding-right: 10px;
+}
+
+select{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;       /* Remove default arrow */
+    background-repeat: no-repeat;
+    background-image: url(/src/images/caret-down-solid.svg);   /* Add custom arrow */
+    background-position: right 10px center;  /* Position the arrow */
+}
+
+::placeholder{
+    color: #8e8e8e;
+    opacity: 1;
+}
+
+.input-text-box.placeholder{
+    color: #999;
+}
+
+.btn {
+    background-color: #1d4f82;
+    box-shadow: inset 0px 0px 10px #6d93b9;
+    border-radius: 7px;
+    height: 80%;
+    width: 80%;
+    min-height: 10px;
+    min-width: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+}
+
+.btn.disabled{
+    background-color: #595858;
+    box-shadow: inset 0px 0px 10px #aeaeae;
+}
+
+.btn-text{
+    color:white;
+    font-size: inherit;
+}
