@@ -1,7 +1,6 @@
 import './stylesheets/App.css';
 import './stylesheets/Components.css';
 import {
-  useParams,
   useNavigate,
   Outlet,
 } from "react-router-dom";
@@ -17,12 +16,11 @@ import Button from '@mui/material/Button';
 
 function App() {
   let navigate = useNavigate();
-  let params = useParams();
   const [formValue, setFormValue] = useState({
     projectName: "",
     scanningMode: "",
     scanDimensionsX: "",
-    scanDimensionsy: "",
+    scanDimensionsY: "",
     scannerFrequency: "",
   });
 
@@ -32,7 +30,7 @@ function App() {
   const [open, setOpen] = useState(false);
 
   const scanning_modes = ["", "GANTRY", "CRAWLER", "AUTO", "MANUAL", "ARM"]
-  const { projectName, scanningMode, scanDimensionsX, scanDimensionsy, scannerFrequency } = formValue;
+  const { projectName, scanningMode, scanDimensionsX, scanDimensionsY, scannerFrequency } = formValue;
   const submitFormAPI = axios.create({
     baseURL: 'https://wavescan-internship.saurabhmudgal.repl.co/submitForm'
   });
@@ -42,7 +40,7 @@ function App() {
     setFormValue((prev) => {
       switch (name) {
         case "scanDimensionsX": value = parseInt(value); break;
-        case "scanDimensionsy": value = parseInt(value); break;
+        case "scanDimensionsY": value = parseInt(value); break;
         case "scannerFrequency": value = parseFloat(value); break;
         default: break;
       }
@@ -66,14 +64,20 @@ function App() {
 
   const handleSubmitScan = (e) => {
     setIsLoading(true);
-    submitFormAPI.post('', formValue)
+    submitFormAPI.post('', formValue, {
+      headers: {
+        'content-type': 'application/json'
+      }
+    })
       .then((response) => {
+        console.log(response);
         setIsLoading(false);
         setFormResponse(response.status)
         setOpen(true);
       })
       .catch((error) => {
         if (error.response) {
+          console.log(error.response);
           console.log(error.response.data);
           console.log(error.response.status);
           setFormError(error.response.data);
@@ -121,10 +125,10 @@ function App() {
         </div>
         <div style={{ width: "50%", display: "inline-block" }}>
           <TextInputField
-            name="scanDimensionsy"
+            name="scanDimensionsY"
             labelName='Y'
             placeholder='0'
-            value={scanDimensionsy}
+            value={scanDimensionsY}
             handleChange={handleChange}
             inline={true}
           />
