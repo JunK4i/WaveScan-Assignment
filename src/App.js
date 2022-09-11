@@ -38,12 +38,12 @@ function App() {
   const handleChange = (e) => {
     let { name, value } = e.target;
     setFormValue((prev) => {
-      switch (name) {
-        case "scanDimensionsX": value = parseInt(value); break;
-        case "scanDimensionsY": value = parseInt(value); break;
-        case "scannerFrequency": value = parseFloat(value); break;
-        default: break;
-      }
+      // switch (name) {
+      //   case "scanDimensionsX": value = parseInt(value); break;
+      //   case "scanDimensionsY": value = parseInt(value); break;
+      //   case "scannerFrequency": value = parseFloat(value); break;
+      //   default: break;
+      // }
       return {
         ...prev,
         [name]: value,
@@ -62,34 +62,41 @@ function App() {
     }
   }
 
-  const handleSubmitScan = (e) => {
+  const handleSubmitScan = async (e) => {
     setIsLoading(true);
-    submitFormAPI.post('', formValue, {
+    let response = await submitFormAPI.post('', formValue, {
       headers: {
         'content-type': 'application/json'
       }
     })
-      .then((response) => {
-        console.log(response);
-        setIsLoading(false);
-        setFormResponse(response.status)
-        setOpen(true);
-      })
-      .catch((error) => {
-        if (error.response) {
-          console.log(error.response);
-          console.log(error.response.data);
-          console.log(error.response.status);
-          setFormError(error.response.data);
-          setFormResponse(error.response.status);
-          setOpen(true);
-        } else if (error.request) {
-          console.log(error.request);
-        } else {
-          console.log(error.message);
-        }
-        setIsLoading(false);
-      });
+    setIsLoading(false);
+    if (response.data.status === 200) {
+      setFormResponse(response.data.status);
+    } else {
+      setFormError(response.data.message);
+      setFormResponse(response.data.status);
+    }
+    // .then((response) => {
+    //   console.log(response);
+    //   setIsLoading(false);
+    //   setFormResponse(response.status)
+    //   setOpen(true);
+    // })
+    // .catch((error) => {
+    //   if (error.response) {
+    //     console.log(error.response);
+    //     console.log(error.response.data);
+    //     console.log(error.response.status);
+    //     setFormError(error.response.data);
+    //     setFormResponse(error.response.status);
+    //     setOpen(true);
+    //   } else if (error.request) {
+    //     console.log(error.request);
+    //   } else {
+    //     console.log(error.message);
+    //   }
+    //   setIsLoading(false);
+    // });
   }
 
   const renderCard = () => {
